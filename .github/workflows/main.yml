@@ -29,5 +29,5 @@ jobs:
           zone: 'europe-west9-a'
           ssh_private_key: '${{secrets.SSH_PRIVATE_KEY}}'
           script: |
-            cd /home/noapo/cooking-booking/
+            cd /home/noa_pozzodiborgo/cooking-booking/
             git pull
