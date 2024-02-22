@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: back-end
+      dockerfile: Dockerfile
+    container_name: "backend"
+    ports:
+      - "5200:5200"
+    networks:
+      - cooking-booking.net
+
+  frontend:
+    container_name: frontend
+    image: "node:18-alpine"
+    user: "node"
+    working_dir: /app/front-end
+    volumes:
+      - ./front-end:/app/front-end
+    depends_on:
+      - backend
+    command: "pnpm run dev"
+    networks:
+      - cooking-booking_net
+
+networks:
+  cooking-booking_net:
+    driver: bridge
