@@ -3,6 +3,7 @@ import { HeaderComponent } from '../components/HeaderComponent.tsx';
 import { FooterComponent } from '../components/FooterComponent.tsx';
 import {Atelier} from "../utils/types.js";
 import {useFetchParticipationsByEmail} from "../utils/hooks/useFetchParticipationsByEmail.js";
+import {AtelierComponent} from "../components/AtelierComponent.js";
 
 // type AteliersResponse = {
 //     valid: boolean;
@@ -19,7 +20,7 @@ export function ProfilePage() {
         setEmail(e.target.value);
     };
 
-    const [ateliers, setAteliers] = useState<String [] | null>(null);
+    const [ateliers, setAteliers] = useState<Atelier [] | null>(null);
 
     const { participations} = useFetchParticipationsByEmail(email);
 
@@ -29,7 +30,7 @@ export function ProfilePage() {
 
             if (participations) {
                 const ateliers = participations.map((participation) => {
-                    return participation.atelier.nom;
+                    return participation.atelier;
                 });
                 setAteliers(ateliers);
             }
@@ -62,20 +63,20 @@ export function ProfilePage() {
                     >
                         {loading ? 'Chargement...' : 'Vérifier'}
                     </button>
-                    <div className="mt-4">
-                        {ateliers ? (
-                            <ul>
-                                {ateliers.map((workshop, index) => (
-                                    <li key={index}>{workshop}</li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>Vos ateliers n'ont pas encore été attribués..</p>
-                        )}
-                    </div>
+                </div>
+                <div className="mt-4">
+                    {ateliers ? (
+                        <div className="flex flex-col items-center">
+                            {ateliers.map((atelier: Atelier) => (
+                                <AtelierComponent key={atelier.id} ateliers={atelier}/>
+                            ))}
+                        </div>
+                    ) : (
+                        <p>Vos ateliers n'ont pas encore été attribués..</p>
+                    )}
                 </div>
             </div>
-            <FooterComponent />
+            <FooterComponent/>
         </>
 
 
