@@ -1,4 +1,4 @@
-const wishesController = require('./controllers/wishesController');
+const wishesController = require('./controllers/wishes');
 const router = require("express").Router();
 
 router.get("/wishes", wishesController.allWishes);
