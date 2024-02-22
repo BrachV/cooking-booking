@@ -16,6 +16,8 @@ app.use(cors({
   origin: '*'
 }));
 
+app.use(express.static('public'));
+
 // Routes setup
 app.use('/api/ateliers', ateliersRoutes);
 app.use('/api/themes', themesRoutes);
