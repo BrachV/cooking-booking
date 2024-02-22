@@ -16,7 +16,12 @@ Les participants peuvent exprimer leurs préférences pour certains thèmes d'at
 
 - **Confirmation de Participation :** Les participants assignés à un atelier peuvent confirmer leur participation (pas eu le temps de faire la reliure front).
 
-- **Consultation des Ateliers Assignés :** Les participants peuvent consulter les détails des ateliers auxquels ils ont été assignés et ~~ont confirmé leur participation~~ (affiche tout les ateliers auquelle il est assigné ).
+- **Consultation des Ateliers Assignés :** Les participants peuvent consulter les détails des ateliers auxquels ils ont été assignés et ~~ont confirmé leur participation~~ (affiche tout les ateliers auquel il est assigné ).
+
+## Commentaires
+- Comme le projet n'a été developpé qu'a partir de 16H apres chagement de stack technique 45 X jusq'u a avoir quelque chose de fonctionel l'implémentation de l'algo n'est pas celle obtenue.
+- Théoriquement MVP même si participation multiple au meme atelier possible lors de la demande de calcul backoffice (car algo fait en vitesse).
+- API Rest / CRUD pour le back + Toutes les routes nécéssaires de faites (back bon sauf algo)
 
 ## Membres de l'Équipe
 
@@ -69,3 +74,7 @@ Les participants peuvent exprimer leurs préférences pour certains thèmes d'at
 ## Usage
 
 Pour accéder à CookingBooking, ouvrez un navigateur et allez à `http://localhost:<PORT>`, en remplaçant `<PORT>` par le port spécifié pour l'application frontend.
+
+## PREVIEW PUBLIQUE
+http://34.163.193.237:3080
+~~http://34.163.193.237:5173~~
