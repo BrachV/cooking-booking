@@ -74,11 +74,11 @@ export const ApplyPage = () => {
                 utilisateur_nom: `${firstName} ${lastName}`,
                 utilisateur_email: email,
                 ordre_de_preference: index + 1,
-                themeId: themes.find((t) => t.abreviation === theme)?.id,
+                themeId: themes?.find((t) => t.abreviation === theme)?.id,
                 nombre_participations_souhaitees: choice
             };
 
-            submit(wishData);
+            submit(wishData as any);
 
         });
 
