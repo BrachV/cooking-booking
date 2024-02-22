@@ -19,7 +19,7 @@ export const AtelierPage = () => {
                 {ateliers && ateliers.length > 0 ? (
                     <div className="flex flex-col items-center">
                         {ateliers.map((atelier: Atelier) => (
-                            <AtelierComponent key={atelier.id} admin ateliers={atelier}/>
+                            <AtelierComponent key={atelier.id} ateliers={atelier}/>
                         ))}
                     </div>
                 ) : (
