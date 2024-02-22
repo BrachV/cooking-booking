@@ -80,14 +80,12 @@ export const ApplyPage = () => {
 
             submit(wishData);
 
-            console.log("Reponse", response);
-
         });
 
         console.log("Inscription envoyée", themesList);
 
         //rediriger vers la page d'accueil
-        window.location.href = '/';
+        //window.location.href = '/';
 
     };
 

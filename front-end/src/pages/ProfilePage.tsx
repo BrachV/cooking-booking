@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { HeaderComponent } from '../components/HeaderComponent.tsx';
 import { FooterComponent } from '../components/FooterComponent.tsx';
+import {Atelier} from "../utils/types.js";
+import {useFetchParticipationsByEmail} from "../utils/hooks/useFetchParticipationsByEmail.js";
 
 // type AteliersResponse = {
 //     valid: boolean;
@@ -17,20 +19,21 @@ export function ProfilePage() {
         setEmail(e.target.value);
     };
 
+    const [ateliers, setAteliers] = useState<String [] | null>(null);
+
+    const { participations} = useFetchParticipationsByEmail(email);
+
     const verifyEmail = async () => {
         setLoading(true);
         try {
 
-            //todo : UTILISER api.ts VOIR hooks (notion de loading !)
+            if (participations) {
+                const ateliers = participations.map((participation) => {
+                    return participation.atelier.nom;
+                });
+                setAteliers(ateliers);
+            }
 
-
-            // const data: WorkshopResponse = await response.json();
-
-            // if (data.valid && data.ateliers) {
-            //     setateliers(data.ateliers);
-            // } else {
-            //     setateliers(null);
-            // }
         } catch (error) {
             console.error('Erreur lors de la vérification de l\'email', error);
         } finally {
@@ -60,16 +63,15 @@ export function ProfilePage() {
                         {loading ? 'Chargement...' : 'Vérifier'}
                     </button>
                     <div className="mt-4">
-                        {/* {ateliers ? (
-                    <ul>
-                    //todo : renvoyer les ateliers assigné à l'utilisateur (ne fonctionne pas car la partie optimisation n'est pas implémenté)
-                        {ateliers.map((workshop, index) => (
-                            <li key={index}>{workshop}</li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>Vos ateliers n'ont pas encore été attribués..</p>
-                )} */}
+                        {ateliers ? (
+                            <ul>
+                                {ateliers.map((workshop, index) => (
+                                    <li key={index}>{workshop}</li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>Vos ateliers n'ont pas encore été attribués..</p>
+                        )}
                     </div>
                 </div>
             </div>
