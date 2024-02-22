@@ -23,7 +23,7 @@ jobs:
           npm run build
 
       - name: Deploy via SSH
-        uses: 'google-github-actions/ssh-compute@v1'
+        uses: google-github-actions/ssh-compute@v1
         with:
           instance_name: 'instance-20240222-131545'
           zone: 'europe-west9-a'
@@ -31,12 +31,3 @@ jobs:
           script: |
             cd /home/noapo/cooking-booking/
             git pull
-      - name: Deploy via SSH
-        uses: google-github-actions/ssh-compute@v1
-        with:
-          instance_name: instance-20240222-131545
-          zone: europe-west9-a
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            ssh noa_pozzodiborgo@34.163.193.237 "cd /home/noapo/cooking-booking/ && git pull"
-
