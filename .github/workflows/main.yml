@@ -2,22 +2,21 @@ name: Deploy to VM
 
 on:
   push:
-    branches:
-      - main
+    branches: ["master"]
+
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
       
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Deploy to VM
-      run: |
-        ssh noa_pozzodiborgo@34.163.193.237 "cd /home/noapo/cooking-booking && git pull"
+      - name: Deploy to VM
+        run: |
+          ssh noa_pozzodiborgo@34.163.193.237 "cd /home/noapo/cooking-booking && git pull"
