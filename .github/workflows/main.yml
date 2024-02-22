@@ -25,9 +25,9 @@ jobs:
       - name: Deploy via SSH
         uses: 'google-github-actions/ssh-compute@v1'
         with:
-          hostname: 34.163.193.237
-          username: noa_pozzodiborgo
-          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          instance_name: 'instance-20240222-131545'
+          zone: 'europe-west9-a'
+          ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
           script: |
             cd /home/noapo/cooking-booking/
             git pull
