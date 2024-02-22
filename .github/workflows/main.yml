@@ -15,9 +15,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'  
+          
+      - name: Navigate to front-end directory
+        run: cd cooking-booking/front-end/
 
       - name: Install dependencies
-        run: sudo npm install  
+        run: sudo npm install 
 
       - name: Build the project
         run: sudo npm run build  
