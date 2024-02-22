@@ -17,7 +17,7 @@ jobs:
           node-version: '18'  
           
       - name: Navigate to front-end directory
-        run: cd .. && cd .. && ls
+        run: cd .. && ls
 
       - name: Install dependencies
         run: sudo npm install 
