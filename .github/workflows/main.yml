@@ -28,6 +28,4 @@ jobs:
           instance_name: 'instance-20240222-131545'
           zone: 'europe-west9-a'
           ssh_private_key: '${{secrets.SSH_PRIVATE_KEY}}'
-          script: |
-            cd /home/noa_pozzodiborgo/cooking-booking/
-            git pull
+          command: 'cd /home/noa_pozzodiborgo/cooking-booking/ && ls'
