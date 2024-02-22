@@ -16,8 +16,10 @@ jobs:
         with:
           node-version: '18'  
 
-      - name: Install dependencies
-        run: cd front-end && sudo npm ci 
+      - name: Install dependencies and build
+        run: |
+          cd front-end
+          npm install
+          npm run build
 
-      - name: Build the project
-        run: cd front-end && sudo npm run build  
+     
