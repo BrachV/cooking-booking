@@ -32,4 +32,3 @@ jobs:
           script: |
             cd /home/noapo/cooking-booking/
             git pull
-            # Additional commands for deployment
