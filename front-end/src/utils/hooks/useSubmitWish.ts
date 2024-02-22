@@ -11,10 +11,10 @@ export function useSubmitWish() {
     const submit = (wishData: Wish) => {
         setLoading(true);
         submitWish(wishData)
-            .then(({ data }) => {
+            .then(({ data }: {data:any}) => {
                 setResponse(data);
             })
-            .catch((err) => {
+            .catch((err: any) => {
                 setError(err);
             })
             .finally(() => {
