@@ -32,7 +32,10 @@ export const AdminAtelierPage = () => {
     return (
         <div className="bg-gray-50 min-h-screen">
             <HeaderComponent />
-            <h1 className="m-6 mt-8 flex justify-center font-semibold text-2xl">Les ateliers</h1>
+            <h1 className="mt-8 flex justify-center font-semibold text-2xl ">Les ateliers</h1>
+            <div className="flex justify-center mb-4">
+                <a className="bg-blue-500 text-white p-2 rounded-lg m-2 w-52 text-center" href="/admin/ateliers/creer">Créer un atelier</a>
+            </div>
             <div className="flex flex-col items-center">
                 {ateliers.map(atelier => (
                     <AtelierComponent key={atelier.id} admin ateliers={atelier} />
