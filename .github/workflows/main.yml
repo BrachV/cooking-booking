@@ -16,12 +16,6 @@ jobs:
         with:
           node-version: '18'  
 
-      - name: Install dependencies and build
-        run: |
-          cd front-end
-          npm install
-          npm run build
-
       - name: Deploy via SSH
         uses: google-github-actions/ssh-compute@v1
         with:
