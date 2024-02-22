@@ -25,11 +25,11 @@ jobs:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
+          host: 34.163.193.237
+          username: noa_pozzodiborgo
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT }}
+          port: 22
           script: |
-            cd /path/to/remote/directory
+            cd /home/noapo/cooking-booking/
             git pull
             # Additional commands for deployment
