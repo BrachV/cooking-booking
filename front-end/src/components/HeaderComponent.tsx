@@ -1,11 +1,11 @@
 export const HeaderComponent = () => {
   return (
     <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center mt-0 justify-between px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center mt-0 justify-between px-8 h-24" aria-label="Global">
         <div className="flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5">
             <span className="sr-only">Cooking Booking</span>
-            <img className="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <img className="h-16 w-auto" src="/boitedecuisine.png" alt="" />
           </a>
         </div>
 
