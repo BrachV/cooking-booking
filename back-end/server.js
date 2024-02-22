@@ -1,6 +1,7 @@
 require("dotenv").config();
 const http = require("http");
 const express = require("express");
+const cors = require('cors');
 const ateliersRoutes = require('./routes/ateliers');
 const themesRoutes = require('./routes/themes');
 const wishesRoutes = require('./routes/wishes');
@@ -9,6 +10,11 @@ const participationsRoutes = require('./routes/participations');
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+
+app.use(cors({
+  origin: '*'
+}));
 
 // Routes setup
 app.use('/api/ateliers', ateliersRoutes);

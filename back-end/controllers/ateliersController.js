@@ -14,7 +14,11 @@ exports.createAtelier = async (req, res) => {
 exports.getAllAteliers = async (req, res) => {
     try {
         let ateliers = await Ateliers.findAll();
-        res.status(200).send(ateliers);
+        let ateliersWithThemes = await Promise.all(ateliers.map(async atelier => {
+            atelier.dataValues.theme = await atelier.getTheme();
+            return atelier;
+        }));
+        res.status(200).send(ateliersWithThemes);
     } catch (error) {
         console.error("Erreur récupération ateliers : ", error);
         res.status(500).send({ message: "Erreur lors de la récupération des ateliers." });

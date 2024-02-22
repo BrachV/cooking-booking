@@ -3,6 +3,8 @@ import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 import { FooterComponent } from "../components/FooterComponent.tsx";
 import { HeaderComponent } from "../components/HeaderComponent.tsx";
+import {useFetchThemes} from "../utils/hooks/useFetchThemes.js";
+import {useSubmitWish} from "../utils/hooks/useSubmitWish.js";
 
 interface ItemProps {
     value: string;
@@ -29,25 +31,64 @@ const SortableList = SortableContainer(({ items }: SortableListProps) => {
 });
 
 export const ApplyPage = () => {
-    const [themes, setThemes] = useState<string[]>(["fr", "jp", "it", "fr", "jp", "it"]);
+    const [themesList, setThemesList] = useState<string[]>([]);
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [choice, setChoice] = useState<number>(1);
 
     const onSortEnd = ({ oldIndex, newIndex }: { oldIndex: number, newIndex: number }) => {
-        setThemes((themes) => {
-            const newThemes = Array.from(themes);
+        setThemesList((themesList) => {
+            const newThemes = Array.from(themesList);
             const [removed] = newThemes.splice(oldIndex, 1);
             newThemes.splice(newIndex, 0, removed);
             return newThemes;
         });
     };
 
+    const { themes, loading, error } = useFetchThemes();
+    const { submit, response, loading: submitLoading, error: submitError } = useSubmitWish();
+
+
+    if (loading) return <div>Chargement des thèmes...</div>;
+    if (error) return <div>Erreur lors du chargement des thèmes : {error.message}</div>;
+
+    if (submitLoading) return <div>Envoi de la candidature...</div>;
+    if (submitError) return <div>Erreur lors de l'envoi de la candidature : {submitError.message}</div>;
+
+    if (themesList.length == 0 && !loading && themes && themes.length > 0) {
+        console.log(themes);
+        setThemesList(themes.map(
+            (theme) => theme.abreviation)
+        );
+    }
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log({ firstName, lastName, email, choice, themes });
-        console.log("Inscription envoyée", themes);
+        console.log({ firstName, lastName, email, choice, themes: themesList });
+
+        //Pour chaque thème, envoyer une requête pour soumettre le vœu selon l'ordre de priorité (position dans la liste)
+        //hook useSubmitWish
+        themesList.forEach((theme, index) => {
+
+            const wishData = {
+                utilisateur_nom: `${firstName} ${lastName}`,
+                utilisateur_email: email,
+                ordre_de_preference: index + 1,
+                themeId: themes.find((t) => t.abreviation === theme)?.id,
+                nombre_participations_souhaitees: choice
+            };
+
+            submit(wishData);
+
+            console.log("Reponse", response);
+
+        });
+
+        console.log("Inscription envoyée", themesList);
+
+        //rediriger vers la page d'accueil
+        window.location.href = '/';
+
     };
 
     return (
@@ -69,7 +110,7 @@ export const ApplyPage = () => {
 
                 <div className='w-72 flex flex-col space-y-4'>
                     {/* @ts-ignore */}
-                    <SortableList items={themes} onSortEnd={onSortEnd} />
+                    <SortableList items={themesList} onSortEnd={onSortEnd} />
                 </div>
 
                 <button type="submit" className="btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-300">Envoyer</button>
