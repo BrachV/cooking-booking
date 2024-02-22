@@ -6,7 +6,7 @@ export const LandingPage = () =>
     return (
         <div>
             <HeaderComponent />
-            <p className="text-cyan-300">Landing page</p>
+            <p>Landing page</p>
             <FooterComponent />
         </div>
     )
