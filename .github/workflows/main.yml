@@ -1,9 +1,8 @@
-name: Deploy to VM
+name: Deploy Front
 
 on:
   push:
     branches: ["master"]
-
 
 jobs:
   build:
@@ -11,12 +10,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy to VM
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'  
+
+      - name: Install dependencies and build
         run: |
-          ssh noa_pozzodiborgo@34.163.193.237 "cd /home/noapo/cooking-booking && git pull"
+          cd front-end
+          npm install
+          npm run build
+
+      - name: Deploy via SSH
+        uses: 'google-github-actions/ssh-compute@v1'
+        with:
+          hostname: 34.163.193.237
+          username: noa_pozzodiborgo
+          private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/noapo/cooking-booking/
+            git pull
+
