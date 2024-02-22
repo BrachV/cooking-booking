@@ -1,13 +1,20 @@
 require("dotenv").config();
 const http = require("http");
 const express = require("express");
-const routes = require("./routes");
+const ateliersRoutes = require('./routes/ateliers');
+const themesRoutes = require('./routes/themes');
+const wishesRoutes = require('./routes/wishes');
+const participationsRoutes = require('./routes/participations');
 
 const app = express();
 
+app.use(express.json());
 
 // Routes setup
-app.use("/api/", routes);
+app.use('/api/ateliers', ateliersRoutes);
+app.use('/api/themes', themesRoutes);
+app.use('/api/wishes', wishesRoutes);
+app.use('/api/participations', participationsRoutes);
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
