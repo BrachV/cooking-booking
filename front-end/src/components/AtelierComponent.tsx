@@ -3,7 +3,7 @@ export const AtelierComponent = ({ ateliers, admin }: { ateliers: any, admin?: b
 
 		<div className="flex w-4/6 bg-white p-4 mb-4 border justify-between">
 			<div className="flex">
-				<img className="h-auto w-44 ml-1" src={`/logo/${ateliers.theme.abreviation}.png`} alt="Drapeau" />
+				<img className="h-auto w-44 ml-1 object-contain" src={`/logo/${ateliers.theme.abreviation}.png`} alt="Drapeau" />
 				<div className="flex flex-col justify-center ml-6">
 					<h2 className="text-xl font-semibold">{ateliers.nom}</h2>
 					<p className="text-gray-500">{ateliers.description}</p>
