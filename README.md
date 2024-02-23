@@ -71,6 +71,10 @@ Les participants peuvent exprimer leurs préférences pour certains thèmes d'at
     npm run server
     ```
 
+## Dépoiement
+
+j'ai déployer le site avec google cloud. j'ai créé un machine sur la quel j'ai fait un git pull de ce git hub et après je lance le server a la main (cd cooking-booking/front-end/ && sudo npm i -f && cd .. && cd back-end/ && sudo npm i -f && cd .. && sudo npm run build && cd .. && cd back-end/ && sudo npm run server) cela lance donc notre serveur qui tourne sur ma VM google cloud. j'ai essayé d'automatiser la tache en faisant une git hub action mais cela ne fonctionne pas je n'arrive pas ame conncecter à ma VM malger l'utilisation de la doc google cloud la meme erreur persiste comme quoi je ne suis pas autentifier pourtant ma cle publique est belle est bien donné a la vm et mon github a belle et bien ma cle privé mais malger cela ca ne fonctionnne pas si cela fonctionnais ma git hub action se serait executé a chaque push dans la branche master (branche dites branche de production donc les push sont fait dedans quand le site a été tester en developpement avant) et cela m'aurais connecter a ma vm en shh et executer les commande que je souhaitais en loccurence : cd cooking-booking/front-end/ && sudo npm i -f && cd .. && cd back-end/ && sudo npm i -f && cd .. && sudo npm run build && cd .. && cd back-end/ && sudo npm run server (commande que jutilise manuelement pour lancer mon serveur web mais malgrer une erreur que je n'arrive pas à résoudre notre déploiement n'est pas totalement automatisé).
+
 ## Usage
 
 Pour accéder à CookingBooking, ouvrez un navigateur et allez à `http://localhost:<PORT>`, en remplaçant `<PORT>` par le port spécifié pour l'application frontend.
